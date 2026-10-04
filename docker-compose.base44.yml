@@ -1,0 +1,21 @@
+services:
+  web:
+    image: node:22-slim
+    working_dir: /app
+    restart: on-failure
+    ports:
+      - "3000:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    env_file:
+      - ./.env.base44-defaults
+    environment:
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+    command: ["sh", "-ec", "npm install && exec npx vite --host 0.0.0.0 --port 5173"]
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://127.0.0.1:5173/ | head -1 | grep -q '<!doctype html>' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

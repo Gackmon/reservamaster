@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ReservaMaster — Sistema de Design
+   Tema escuro forçado (.dark no <html>), tokens HSL,
+   destaque âmbar, mobile-first.
+   ============================================================ */
+
+:root {
+  --font-heading: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 10% 6%;
+  --foreground: 0 0% 96%;
+
+  --card: 240 8% 10%;
+  --card-foreground: 0 0% 96%;
+
+  --popover: 240 8% 9%;
+  --popover-foreground: 0 0% 96%;
+
+  --primary: 38 92% 50%;              /* âmbar — cor de destaque */
+  --primary-foreground: 240 10% 8%;
+
+  --secondary: 240 6% 16%;
+  --secondary-foreground: 0 0% 92%;
+
+  --muted: 240 6% 14%;
+  --muted-foreground: 240 5% 65%;
+
+  --accent: 38 92% 50%;               /* âmbar */
+  --accent-foreground: 240 10% 8%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+
+  --success: 142 71% 45%;
+  --success-foreground: 0 0% 98%;
+
+  --warning: 38 92% 50%;
+  --warning-foreground: 240 10% 8%;
+
+  --border: 240 6% 18%;
+  --input: 240 6% 18%;
+  --ring: 38 92% 50%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  touch-action: manipulation;
+  overscroll-behavior-y: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Alvos de toque ≥44px por padrão em botões e links interativos */
+button, a[role="button"], [role="button"] {
+  min-height: 44px;
+}
+
+/* Safe area para menu inferior fixo */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 999px;
+}
+
+/* Pull-to-refresh: impedir seleção de texto durante o gesto */
+.ptr-container {
+  overscroll-behavior-y: contain;
+}
